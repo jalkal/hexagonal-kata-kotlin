@@ -1,17 +1,15 @@
 package com.github.caay2000.external.client
 
-import com.github.caay2000.external.data.Data.productData
-import com.github.caay2000.external.model.Product
+import com.github.caay2000.external.data.Data.accountProductData
 import com.github.caay2000.external.model.ProductClientConfiguration
 import com.github.caay2000.external.model.ProductClientException
 
 class ProductClient(private val configuration: ProductClientConfiguration) {
 
-    fun getProductsByAccountId(accountId: String): Product {
+    fun getProductsByAccountId(accountId: String): List<String> {
 
-        if (productData.containsKey(accountId)) {
-            val data = productData[accountId]!!
-            return Product(data.id, data.name)
+        if (accountProductData.containsKey(accountId)) {
+            return accountProductData[accountId]!!
         }
         throw ProductClientException()
     }
