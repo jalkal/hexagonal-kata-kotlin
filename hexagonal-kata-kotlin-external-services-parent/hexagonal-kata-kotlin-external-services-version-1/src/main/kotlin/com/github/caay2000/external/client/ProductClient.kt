@@ -2,9 +2,10 @@ package com.github.caay2000.external.client
 
 import com.github.caay2000.external.data.Data.productData
 import com.github.caay2000.external.model.Product
+import com.github.caay2000.external.model.ProductClientConfiguration
 import com.github.caay2000.external.model.ProductClientException
 
-class ProductClient {
+class ProductClient(private val configuration: ProductClientConfiguration) {
 
     fun getProductsByAccountId(accountId: String): Product {
 

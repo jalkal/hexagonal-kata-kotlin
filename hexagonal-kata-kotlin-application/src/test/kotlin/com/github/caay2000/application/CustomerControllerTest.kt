@@ -1,13 +1,16 @@
 package com.github.caay2000.application
 
-import com.github.caay2000.application.infrastructure.CustomerController
+import com.github.caay2000.application.infrastructure.main
+import io.ktor.application.Application
+import io.ktor.http.HttpStatusCode
+import io.ktor.server.testing.withTestApplication
+import io.ktor.util.KtorExperimentalAPI
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
+@KtorExperimentalAPI
 class CustomerControllerTest {
-
-    private val sut = CustomerController()
 
     @CsvSource(
         "8461913, Constance Middleton",
@@ -18,14 +21,20 @@ class CustomerControllerTest {
     )
     @ParameterizedTest
     fun `controller should return correct json`(accountId: String, customerName: String) {
+        withTestApplication(Application::main) {
 
-        val result = sut.getCustomerByAccountId(accountId)
+            val response = handleRequest {
+                method = io.ktor.http.HttpMethod.Get
+                uri = "/customer/${accountId}"
+            }
 
-        assertThat(result).isEqualToIgnoringWhitespace(
-            """{
-              "accountId": "$accountId",
-              "customerName": "$customerName"
-            }""".trimIndent()
-        )
+            assertThat(response.response.status()).isEqualTo(HttpStatusCode.OK)
+            assertThat(response.response.content).isEqualToIgnoringWhitespace(
+                """{
+                  "accountId": "$accountId",
+                  "customerName": "$customerName"
+                }""".trimIndent()
+            )
+        }
     }
 }

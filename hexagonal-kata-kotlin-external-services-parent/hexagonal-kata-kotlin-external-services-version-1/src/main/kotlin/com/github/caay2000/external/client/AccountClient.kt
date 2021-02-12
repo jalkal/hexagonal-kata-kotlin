@@ -2,9 +2,10 @@ package com.github.caay2000.external.client
 
 import com.github.caay2000.external.data.Data.accountData
 import com.github.caay2000.external.model.Account
+import com.github.caay2000.external.model.AccountClientConfiguration
 import com.github.caay2000.external.model.AccountClientException
 
-class AccountClient {
+class AccountClient(private val configuration: AccountClientConfiguration) {
 
     fun getAccountById(accountId: String): Account {
 
