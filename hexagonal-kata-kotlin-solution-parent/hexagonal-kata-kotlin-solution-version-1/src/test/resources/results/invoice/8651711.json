@@ -1,0 +1,19 @@
+{
+  "customer": {
+    "accountId": "8651711",
+    "customerName": "Gareth Brady"
+  },
+  "products": [
+    {
+      "id": "100",
+      "name": "TV",
+      "price": 80
+    },
+    {
+      "id": "200",
+      "name": "LAND LINE",
+      "price": 20
+    }
+  ],
+  "totalAmount": 100
+}

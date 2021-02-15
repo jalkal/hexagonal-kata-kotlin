@@ -1,0 +1,16 @@
+{
+  "customer" : {
+    "accountId" : "8729755",
+    "customerName" : "Silas Mack"
+  },
+  "products" : [ {
+    "id" : "300",
+    "name" : "PHONE",
+    "price" : 60
+  }, {
+    "id" : "400",
+    "name" : "INTERNET (20MB)",
+    "price" : 40
+  } ],
+  "totalAmount" : 100
+}

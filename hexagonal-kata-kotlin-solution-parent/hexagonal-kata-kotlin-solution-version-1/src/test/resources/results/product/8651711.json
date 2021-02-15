@@ -1,0 +1,12 @@
+[
+  {
+    "id": "100",
+    "name": "TV",
+    "price": 80
+  },
+  {
+    "id": "200",
+    "name": "LAND LINE",
+    "price": 20
+  }
+]

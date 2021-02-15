@@ -14,11 +14,15 @@
     <artifactId>hexagonal-kata-kotlin-application</artifactId>
     <version>1</version>
 
+    <properties>
+        <external.services.version>1</external.services.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.github.caay2000</groupId>
             <artifactId>hexagonal-kata-kotlin-external-services</artifactId>
-            <version>1</version>
+            <version>${external.services.version}</version>
         </dependency>
         <dependency>
             <groupId>org.koin</groupId>
@@ -44,6 +48,11 @@
         <dependency>
             <groupId>io.ktor</groupId>
             <artifactId>ktor-server-netty</artifactId>
+            <version>${ktor.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.ktor</groupId>
+            <artifactId>ktor-jackson</artifactId>
             <version>${ktor.version}</version>
         </dependency>
         <dependency>

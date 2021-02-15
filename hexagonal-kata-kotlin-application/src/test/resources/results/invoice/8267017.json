@@ -1,0 +1,24 @@
+{
+  "customer" : {
+    "accountId" : "8267017",
+    "customerName" : "Ivory Ayers"
+  },
+  "products" : [ {
+    "id" : "120",
+    "name" : "TV PREMIUM",
+    "price" : 120
+  }, {
+    "id" : "200",
+    "name" : "LAND LINE",
+    "price" : 20
+  }, {
+    "id" : "300",
+    "name" : "PHONE",
+    "price" : 60
+  }, {
+    "id" : "420",
+    "name" : "INTERNET (1GB)",
+    "price" : 80
+  } ],
+  "totalAmount" : 280
+}
