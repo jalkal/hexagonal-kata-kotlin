@@ -7,13 +7,13 @@ import java.time.LocalDate
 object Data {
 
     val productData = mapOf(
-        Pair("100", ProductData("100", "TV", 80)),
-        Pair("120", ProductData("120", "TV PREMIUM", 120)),
-        Pair("200", ProductData("200", "LAND LINE", 20)),
-        Pair("300", ProductData("300", "PHONE", 60)),
-        Pair("400", ProductData("400", "INTERNET (20MB)", 40)),
-        Pair("410", ProductData("410", "INTERNET (300MB)", 60)),
-        Pair("420", ProductData("420", "INTERNET (1GB)", 80))
+        Pair("100", ProductData("100", "TV", 80, 70)),
+        Pair("120", ProductData("120", "TV PREMIUM", 120, 100)),
+        Pair("200", ProductData("200", "LAND LINE", 20, 16)),
+        Pair("300", ProductData("300", "PHONE", 60, 50)),
+        Pair("400", ProductData("400", "INTERNET (20MB)", 40, 35)),
+        Pair("410", ProductData("410", "INTERNET (300MB)", 60, 50)),
+        Pair("420", ProductData("420", "INTERNET (1GB)", 80, 65))
     )
 
     val accountData = mapOf(

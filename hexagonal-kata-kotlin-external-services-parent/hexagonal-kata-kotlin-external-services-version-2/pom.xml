@@ -14,4 +14,12 @@
     <artifactId>hexagonal-kata-kotlin-external-services</artifactId>
     <version>2</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.github.caay2000</groupId>
+            <artifactId>hexagonal-kata-kotlin-external-services-common</artifactId>
+            <version>1</version>
+        </dependency>
+    </dependencies>
+
 </project>

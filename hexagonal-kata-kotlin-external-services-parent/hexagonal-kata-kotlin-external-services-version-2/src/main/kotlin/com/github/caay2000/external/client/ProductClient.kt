@@ -4,7 +4,7 @@ import com.github.caay2000.external.data.Data.accountProductData
 import com.github.caay2000.external.model.ProductClientConfiguration
 import com.github.caay2000.external.model.ProductClientException
 
-class ProductClient(configuration: ProductClientConfiguration) {
+class ProductClient(private val configuration: ProductClientConfiguration) {
 
     fun getProductsByAccountId(accountId: String): List<String> {
 
