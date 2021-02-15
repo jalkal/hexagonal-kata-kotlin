@@ -3,7 +3,7 @@ package com.github.caay2000.application.domain
 import com.github.caay2000.external.client.AccountClient
 import com.github.caay2000.external.client.ProductClient
 import com.github.caay2000.external.model.Account
-import com.github.caay2000.external.model.ProductData
+import com.github.caay2000.external.model.Product
 import com.github.caay2000.external.repo.ProductRepository
 
 class CustomerApplication(
@@ -17,7 +17,7 @@ class CustomerApplication(
         return accountClient.getAccountById(accountId)
     }
 
-    fun getProductsByAccountId(accountId: String): List<ProductData> {
+    fun getProductsByAccountId(accountId: String): List<Product> {
 
         val listAccountProducts = productClient.getProductsByAccountId(accountId)
         val productInformation = productRepository.getProductInformation()
@@ -35,13 +35,13 @@ class CustomerApplication(
         return Invoice(
             customer = customer,
             products = customerProducts,
-            totalAmount = customerProducts.map { it.price }.sum()
+            totalAmount = customerProducts.map { it.productPrice }.sum()
         )
     }
 
     data class Invoice(
         val customer: Account,
-        val products: List<ProductData>,
+        val products: List<Product>,
         val totalAmount: Int
     )
 }

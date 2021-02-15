@@ -12,6 +12,10 @@
 
     <groupId>com.github.caay2000</groupId>
     <artifactId>hexagonal-kata-kotlin-solution-version-3</artifactId>
-    <version>3</version>
+    <version>1</version>
+
+    <properties>
+        <external.services.version>3</external.services.version>
+    </properties>
 
 </project>

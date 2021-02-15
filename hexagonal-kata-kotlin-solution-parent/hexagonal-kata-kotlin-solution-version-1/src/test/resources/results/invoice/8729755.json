@@ -5,12 +5,12 @@
   },
   "products" : [ {
     "id" : "300",
-    "name" : "PHONE",
-    "price" : 60
+    "productName" : "PHONE",
+    "productPrice" : 60
   }, {
     "id" : "400",
-    "name" : "INTERNET (20MB)",
-    "price" : 40
+    "productName" : "INTERNET (20MB)",
+    "productPrice" : 40
   } ],
   "totalAmount" : 100
 }

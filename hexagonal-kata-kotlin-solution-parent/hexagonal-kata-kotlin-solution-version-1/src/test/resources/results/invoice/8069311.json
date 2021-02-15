@@ -5,12 +5,12 @@
   },
   "products" : [ {
     "id" : "200",
-    "name" : "LAND LINE",
-    "price" : 20
+    "productName" : "LAND LINE",
+    "productPrice" : 20
   }, {
     "id" : "300",
-    "name" : "PHONE",
-    "price" : 60
+    "productName" : "PHONE",
+    "productPrice" : 60
   } ],
   "totalAmount" : 80
 }

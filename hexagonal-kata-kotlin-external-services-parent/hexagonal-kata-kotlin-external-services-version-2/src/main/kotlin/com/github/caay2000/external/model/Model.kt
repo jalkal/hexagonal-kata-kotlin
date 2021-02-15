@@ -5,7 +5,8 @@ import java.time.LocalDate
 data class Product(
     val id: String,
     val name: String,
-    val price: Int
+    val price: Int,
+    val premiumPrice: Int
 )
 
 data class Account(
@@ -16,4 +17,8 @@ data class Account(
     val postalCode: String,
     val email: String,
     val birthDate: LocalDate
+)
+
+data class AccountProduct(
+    val products: List<String>
 )

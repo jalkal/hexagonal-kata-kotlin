@@ -2,6 +2,7 @@ package com.github.caay2000.application.infrastructure
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.SerializationFeature
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.github.caay2000.application.domain.CustomerApplication
 import com.github.caay2000.application.infrastructure.http.CustomerController
 import com.github.caay2000.external.client.AccountClient
@@ -37,7 +38,7 @@ fun Application.main() {
 
             single { AccountClient(configuration = get()) }
             single { ProductClient(configuration = get()) }
-            single { ProductRepository(productRepositoryConfiguration = get()) }
+            single { ProductRepository(configuration = get()) }
 
             single {
                 CustomerApplication(
@@ -58,8 +59,8 @@ fun Application.main() {
         jackson {
             enable(SerializationFeature.INDENT_OUTPUT)
             disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+            registerModule(JavaTimeModule())
             setSerializationInclusion(JsonInclude.Include.NON_NULL)
-            deactivateDefaultTyping()
         }
     }
 

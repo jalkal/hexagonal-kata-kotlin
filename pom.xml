@@ -30,6 +30,7 @@
         <koin.version>2.2.2</koin.version>
         <ktor.version>1.5.1</ktor.version>
         <logback.version>1.2.3</logback.version>
+        <jackson.version>2.11.0</jackson.version>
     </properties>
 
     <modules>
