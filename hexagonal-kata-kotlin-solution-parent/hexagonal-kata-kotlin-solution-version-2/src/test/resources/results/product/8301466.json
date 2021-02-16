@@ -1,17 +1,17 @@
 [ {
   "id" : "100",
-  "productName" : "TV",
-  "productPrice" : 80
+  "name" : "TV",
+  "price" : 80.00
 }, {
   "id" : "200",
-  "productName" : "LAND LINE",
-  "productPrice" : 20
+  "name" : "LAND LINE",
+  "price" : 20.00
 }, {
   "id" : "300",
-  "productName" : "PHONE",
-  "productPrice" : 60
+  "name" : "PHONE",
+  "price" : 60.00
 }, {
   "id" : "410",
-  "productName" : "INTERNET (300MB)",
-  "productPrice" : 60
+  "name" : "INTERNET (300MB)",
+  "price" : 60.00
 } ]

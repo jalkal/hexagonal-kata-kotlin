@@ -1,19 +1,22 @@
 {
-  "customer": {
-    "accountId": "8651711",
-    "customerName": "Gareth Brady"
-  },
-  "products": [
-    {
-      "id": "100",
-      "productName": "TV",
-      "productPrice": 80
+  "customer" : {
+    "accountId" : "8651711",
+    "name" : "Gareth Brady",
+    "address" : {
+      "addressLine" : "1123 Metus Rd.",
+      "city" : "Värnamo",
+      "postalCode" : "24573"
     },
-    {
-      "id": "200",
-      "productName": "LAND LINE",
-      "productPrice": 20
-    }
-  ],
-  "totalAmount": 100
+    "email" : "amet@Aliquam.edu"
+  },
+  "products" : [ {
+    "id" : "100",
+    "name" : "TV",
+    "price" : 80.00
+  }, {
+    "id" : "200",
+    "name" : "LAND LINE",
+    "price" : 20.00
+  } ],
+  "totalAmount" : 100.00
 }

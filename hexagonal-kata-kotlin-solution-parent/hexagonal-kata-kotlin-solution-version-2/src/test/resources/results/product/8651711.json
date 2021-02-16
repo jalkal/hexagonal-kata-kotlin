@@ -1,12 +1,12 @@
 [
   {
     "id": "100",
-    "productName": "TV",
-    "productPrice": 80
+    "name": "TV",
+    "price": 80.00
   },
   {
     "id": "200",
-    "productName": "LAND LINE",
-    "productPrice": 20
+    "name": "LAND LINE",
+    "price": 20.00
   }
 ]

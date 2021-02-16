@@ -1,16 +1,22 @@
 {
   "customer" : {
     "accountId" : "8729755",
-    "customerName" : "Silas Mack"
+    "name" : "Silas Mack",
+    "address" : {
+      "addressLine" : "Ap #891-8718 Vitae Ave",
+      "city" : "Bayreuth",
+      "postalCode" : "98684"
+    },
+    "email" : "amet@mollisDuissit.ca"
   },
   "products" : [ {
     "id" : "300",
-    "productName" : "PHONE",
-    "productPrice" : 60
+    "name" : "PHONE",
+    "price" : 60.00
   }, {
     "id" : "400",
-    "productName" : "INTERNET (20MB)",
-    "productPrice" : 40
+    "name" : "INTERNET (20MB)",
+    "price" : 40.00
   } ],
-  "totalAmount" : 100
+  "totalAmount" : 100.00
 }

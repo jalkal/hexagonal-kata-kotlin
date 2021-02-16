@@ -1,17 +1,17 @@
 [ {
   "id" : "120",
-  "productName" : "TV PREMIUM",
-  "productPrice" : 120
+  "name" : "TV PREMIUM",
+  "price" : 120.00
 }, {
   "id" : "200",
-  "productName" : "LAND LINE",
-  "productPrice" : 20
+  "name" : "LAND LINE",
+  "price" : 20.00
 }, {
   "id" : "300",
-  "productName" : "PHONE",
-  "productPrice" : 60
+  "name" : "PHONE",
+  "price" : 60.00
 }, {
   "id" : "420",
-  "productName" : "INTERNET (1GB)",
-  "productPrice" : 80
+  "name" : "INTERNET (1GB)",
+  "price" : 80.00
 } ]

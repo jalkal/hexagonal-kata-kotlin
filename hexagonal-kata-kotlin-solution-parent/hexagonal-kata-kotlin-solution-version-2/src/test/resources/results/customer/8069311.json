@@ -1,4 +1,10 @@
 {
-  "accountId" : "8069311",
-  "customerName" : "Uriel Torres"
+  "accountId": "8069311",
+  "name": "Uriel Torres",
+  "address": {
+    "addressLine": "P.O. Box 853, 5399 Dolor Av.",
+    "city": "San Pietro Mussolino",
+    "postalCode": "701410"
+  },
+  "email": "eget@odio.ca"
 }

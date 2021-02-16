@@ -1,4 +1,10 @@
 {
   "accountId" : "8461913",
-  "customerName" : "Constance Middleton"
+  "name" : "Constance Middleton",
+  "address" : {
+    "addressLine" : "P.O. Box 139, 381 Dis Rd.",
+    "city" : "Aosta",
+    "postalCode" : "73760-79194"
+  },
+  "email" : "consectetuer.ipsum.nunc@adipiscingelitCurabitur.co.uk"
 }
