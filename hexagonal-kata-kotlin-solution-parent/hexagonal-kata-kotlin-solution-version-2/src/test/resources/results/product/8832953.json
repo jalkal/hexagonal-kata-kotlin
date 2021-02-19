@@ -1,0 +1,13 @@
+[ {
+  "id" : "120",
+  "name" : "TV PREMIUM"
+}, {
+  "id" : "200",
+  "name" : "LAND LINE"
+}, {
+  "id" : "300",
+  "name" : "PHONE"
+}, {
+  "id" : "400",
+  "name" : "INTERNET (20MB)"
+} ]

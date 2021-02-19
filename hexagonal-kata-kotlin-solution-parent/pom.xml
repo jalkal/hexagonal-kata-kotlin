@@ -19,6 +19,7 @@
         <module>hexagonal-kata-kotlin-solution-version-1</module>
         <module>hexagonal-kata-kotlin-solution-version-2</module>
         <module>hexagonal-kata-kotlin-solution-version-3</module>
+        <module>hexagonal-kata-kotlin-solution-version-4</module>
     </modules>
 
 </project>

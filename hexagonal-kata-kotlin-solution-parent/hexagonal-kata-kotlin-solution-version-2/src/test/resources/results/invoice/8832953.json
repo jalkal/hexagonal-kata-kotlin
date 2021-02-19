@@ -1,0 +1,30 @@
+{
+  "customer" : {
+    "accountId" : "8832953",
+    "name" : "Carla Casey",
+    "address" : {
+      "addressLine" : "P.O. Box 930, 3622 Eu St.",
+      "city" : "Sterling Heights",
+      "postalCode" : "49376"
+    },
+    "email" : "Aenean@nunc.edu"
+  },
+  "products" : [ {
+    "id" : "120",
+    "name" : "TV PREMIUM",
+    "price" : 120.00
+  }, {
+    "id" : "200",
+    "name" : "LAND LINE",
+    "price" : 20.00
+  }, {
+    "id" : "300",
+    "name" : "PHONE",
+    "price" : 60.00
+  }, {
+    "id" : "400",
+    "name" : "INTERNET (20MB)",
+    "price" : 40.00
+  } ],
+  "totalAmount" : 240.00
+}

@@ -1,9 +1,7 @@
 [ {
   "id" : "300",
-  "productName" : "PHONE",
-  "productPrice" : 60
+  "productName" : "PHONE"
 }, {
   "id" : "400",
-  "productName" : "INTERNET (20MB)",
-  "productPrice" : 40
+  "productName" : "INTERNET (20MB)"
 } ]

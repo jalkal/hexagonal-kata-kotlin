@@ -18,7 +18,8 @@ class AccountClient(configuration: AccountClientConfiguration) {
                 city = data.city,
                 postalCode = data.postalCode,
                 email = data.email,
-                birthDate = data.birthDate
+                birthDate = data.birthDate,
+                premiumCustomer = data.premiumCustomer
             )
         }
         throw AccountClientException()

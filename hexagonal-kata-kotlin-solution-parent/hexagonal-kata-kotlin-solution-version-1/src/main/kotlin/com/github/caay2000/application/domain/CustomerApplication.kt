@@ -17,20 +17,27 @@ class CustomerApplication(
         return accountClient.getAccountById(accountId)
     }
 
-    fun getProductsByAccountId(accountId: String): List<Product> {
+    fun getProductsByAccountId(accountId: String): List<ProductResponse> {
 
         val listAccountProducts = productClient.getProductsByAccountId(accountId)
         val productInformation = productRepository.getProductInformation()
 
         return listAccountProducts.map {
             productInformation.first { data -> data.id == it }
+        }.map {
+            ProductResponse(it.id, it.productName)
         }
     }
 
     fun getInvoiceByAccountId(accountId: String): Invoice {
 
         val customer = accountClient.getAccountById(accountId)
-        val customerProducts = getProductsByAccountId(accountId)
+        val listAccountProducts = productClient.getProductsByAccountId(accountId)
+        val productInformation = productRepository.getProductInformation()
+
+        val customerProducts = listAccountProducts.map {
+            productInformation.first { data -> data.id == it }
+        }
 
         return Invoice(
             customer = customer,
@@ -38,6 +45,11 @@ class CustomerApplication(
             totalAmount = customerProducts.map { it.productPrice }.sum()
         )
     }
+
+    data class ProductResponse(
+        val id: String,
+        val productName: String
+    )
 
     data class Invoice(
         val customer: Account,

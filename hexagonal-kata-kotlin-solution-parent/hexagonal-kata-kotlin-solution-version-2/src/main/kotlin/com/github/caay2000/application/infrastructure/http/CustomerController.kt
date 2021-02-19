@@ -32,10 +32,9 @@ class CustomerController(private val customerApplication: CustomerApplication) {
         val accountId = call.parameters["accountId"] ?: throw IllegalArgumentException("parameter accountId not found")
 
         val result = customerApplication.getProductsByAccountId(accountId).map {
-            ProductResponse(
+            ProductNoPriceResponse(
                     id = it.id,
-                    name = it.name,
-                    price = it.price.toBigDecimal().setScale(2)
+                    name = it.name
             )
         }
 
@@ -81,6 +80,11 @@ class CustomerController(private val customerApplication: CustomerApplication) {
             val addressLine: String,
             val city: String,
             val postalCode: String
+    )
+
+    data class ProductNoPriceResponse(
+        val id: String,
+        val name: String
     )
 
     data class ProductResponse(

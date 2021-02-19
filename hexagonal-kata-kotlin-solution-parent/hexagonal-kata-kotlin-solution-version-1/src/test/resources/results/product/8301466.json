@@ -1,17 +1,13 @@
 [ {
   "id" : "100",
-  "productName" : "TV",
-  "productPrice" : 80
+  "productName" : "TV"
 }, {
   "id" : "200",
-  "productName" : "LAND LINE",
-  "productPrice" : 20
+  "productName" : "LAND LINE"
 }, {
   "id" : "300",
-  "productName" : "PHONE",
-  "productPrice" : 60
+  "productName" : "PHONE"
 }, {
   "id" : "410",
-  "productName" : "INTERNET (300MB)",
-  "productPrice" : 60
+  "productName" : "INTERNET (300MB)"
 } ]

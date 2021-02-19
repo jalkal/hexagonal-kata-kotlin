@@ -1,0 +1,30 @@
+{
+  "customer" : {
+    "accountId" : "8267017",
+    "name" : "Ivory Ayers",
+    "address" : {
+      "addressLine" : "P.O. Box 497, 148 Morbi Road",
+      "city" : "Aspuket",
+      "postalCode" : "86319"
+    },
+    "email" : "a.magna@necleo.net"
+  },
+  "products" : [ {
+    "id" : "120",
+    "name" : "TV PREMIUM",
+    "price" : 120.00
+  }, {
+    "id" : "200",
+    "name" : "LAND LINE",
+    "price" : 20.00
+  }, {
+    "id" : "300",
+    "name" : "PHONE",
+    "price" : 60.00
+  }, {
+    "id" : "420",
+    "name" : "INTERNET (1GB)",
+    "price" : 80.00
+  } ],
+  "totalAmount" : 280.00
+}

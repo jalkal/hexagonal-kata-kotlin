@@ -25,7 +25,7 @@ class CustomerControllerTest {
         }
     }
 
-    @CsvSource("8069311", "8267017", "8301466", "8461913", "8535077", "8651711", "8729755", "8740957")
+    @CsvSource("8069311", "8267017", "8301466", "8461913", "8535077", "8651711", "8729755", "8740957", "8832953")
     @ParameterizedTest
     fun `controller should return correct customer json for accountId`(accountId: String) {
         withTestApplication(Application::main) {
@@ -54,7 +54,7 @@ class CustomerControllerTest {
         }
     }
 
-    @CsvSource("8069311", "8267017", "8301466", "8461913", "8535077", "8651711", "8729755", "8740957")
+    @CsvSource("8069311", "8267017", "8301466", "8461913", "8535077", "8651711", "8729755", "8740957", "8832953")
     @ParameterizedTest
     fun `controller should return correct product json for accountId`(accountId: String) {
         withTestApplication(Application::main) {
@@ -83,7 +83,7 @@ class CustomerControllerTest {
         }
     }
 
-    @CsvSource("8069311", "8267017", "8301466", "8461913", "8535077", "8651711", "8729755", "8740957")
+    @CsvSource("8069311", "8267017", "8301466", "8461913", "8535077", "8651711", "8729755", "8740957", "8832953")
     @ParameterizedTest
     fun `controller should return correct invoice json for accountId`(accountId: String) {
         withTestApplication(Application::main) {

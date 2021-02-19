@@ -1,0 +1,16 @@
+{
+  "customer" : {
+    "accountId" : "8069311",
+    "customerName" : "Uriel Torres"
+  },
+  "products" : [ {
+    "id" : "200",
+    "productName" : "LAND LINE",
+    "productPrice" : 20
+  }, {
+    "id" : "300",
+    "productName" : "PHONE",
+    "productPrice" : 60
+  } ],
+  "totalAmount" : 80
+}

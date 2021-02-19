@@ -1,0 +1,35 @@
+{
+  "customer": {
+    "accountId": "8301466",
+    "name": "Christen Conrad",
+    "address": {
+      "addressLine": "734-6825 Nunc Av.",
+      "city": "Satriano di Lucania",
+      "postalCode": "875760"
+    },
+    "email": "purus@tempusmauris.co.uk"
+  },
+  "products": [
+    {
+      "id": "100",
+      "name": "TV",
+      "price": 59.50
+    },
+    {
+      "id": "200",
+      "name": "LAND LINE",
+      "price": 13.60
+    },
+    {
+      "id": "300",
+      "name": "PHONE",
+      "price": 42.50
+    },
+    {
+      "id": "410",
+      "name": "INTERNET (300MB)",
+      "price": 42.50
+    }
+  ],
+  "totalAmount": 158.10
+}

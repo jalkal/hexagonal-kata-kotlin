@@ -1,0 +1,14 @@
+{
+  "customer": {
+    "accountId": "8740957",
+    "customerName": "Hilel Lopez"
+  },
+  "products": [
+    {
+      "id": "120",
+      "productName": "TV PREMIUM",
+      "productPrice": 120
+    }
+  ],
+  "totalAmount": 120
+}

@@ -34,8 +34,24 @@ class CustomerApplication(
 
         return Invoice(
             customer = customer,
-            products = customerProducts,
-            totalAmount = customerProducts.map { it.price }.sum()
+            products = customerProducts.map {
+                if (customer.premiumCustomer) {
+                    it.copy(price = it.premiumPrice)
+                } else {
+                    it
+                }
+            },
+            totalAmount = customerProducts.map {
+                if (customer.premiumCustomer) {
+                    if(customerProducts.size == 4){
+                        it.premiumPrice
+                    } else {
+                        it.premiumPrice
+                    }
+                } else {
+                    it.price
+                }
+            }.sum()
         )
     }
 

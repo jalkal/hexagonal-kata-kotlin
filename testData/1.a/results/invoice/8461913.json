@@ -1,0 +1,20 @@
+{
+  "customer" : {
+    "accountId" : "8461913",
+    "customerName" : "Constance Middleton"
+  },
+  "products" : [ {
+    "id" : "100",
+    "productName" : "TV",
+    "productPrice" : 80
+  }, {
+    "id" : "200",
+    "productName" : "LAND LINE",
+    "productPrice" : 20
+  }, {
+    "id" : "300",
+    "productName" : "PHONE",
+    "productPrice" : 60
+  } ],
+  "totalAmount" : 160
+}

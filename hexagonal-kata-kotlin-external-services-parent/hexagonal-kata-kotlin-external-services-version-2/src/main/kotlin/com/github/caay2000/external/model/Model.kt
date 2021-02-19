@@ -16,7 +16,8 @@ data class Account(
     val city: String,
     val postalCode: String,
     val email: String,
-    val birthDate: LocalDate
+    val birthDate: LocalDate,
+    val premiumCustomer: Boolean
 )
 
 data class AccountProduct(
