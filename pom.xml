@@ -36,7 +36,8 @@
     <modules>
         <module>hexagonal-kata-kotlin-application</module>
         <module>hexagonal-kata-kotlin-solution-parent</module>
-        <module>hexagonal-kata-kotlin-external-services-parent</module>
+        <!-- commented as they should not be modified in this kata-->
+        <!-- <module>hexagonal-kata-kotlin-external-services-parent</module>-->
     </modules>
 
     <dependencies>

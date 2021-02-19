@@ -21,8 +21,17 @@
     <dependencies>
         <dependency>
             <groupId>com.github.caay2000</groupId>
+            <artifactId>hexagonal-kata-kotlin-external-services-common</artifactId>
+            <version>${external.services.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../kata-libs/hexagonal-kata-kotlin-external-services-common-1.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.github.caay2000</groupId>
             <artifactId>hexagonal-kata-kotlin-external-services</artifactId>
             <version>${external.services.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../kata-libs/hexagonal-kata-kotlin-external-services-${external.services.version}.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.koin</groupId>

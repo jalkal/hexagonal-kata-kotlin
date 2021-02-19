@@ -58,7 +58,7 @@ Seems that changing just the data providers is not enough. Now that you have new
 about it. Seems that they have all their work done in their side, so your manager sends you the json format you'll need
 to return.
 
-_Copy all files from `/testData/2.b/results` folder to your `test/resources` folder and overwrite the existing files.
+_Copy all files from `/kata-test-data/2.b/results` folder to your `test/resources` folder and overwrite the existing files.
 Execute the tests and try to modify your code to accomplish this new version of the tests._
 
 #### 2.c **Your premium customers have 'special' discounts. Apply them**
@@ -66,7 +66,7 @@ Execute the tests and try to modify your code to accomplish this new version of 
 This new version of the external services returns more data. Customer data, has a special field named premiumCustomer,
 that will let you know who is eligible for a special discount. Apply those premium prices to all the customers.
 
-_Copy all files from `/testData/2.c/results` folder to your `test/resources` folder and overwrite the existing files.
+_Copy all files from `/kata-test-data/2.c/results` folder to your `test/resources` folder and overwrite the existing files.
 Execute the tests and try to modify your code to accomplish this new version of the tests._
 
 ### 3. More changes on discounts
@@ -77,7 +77,7 @@ There is a new feature to be applied to your application. From now on, all the p
 each type (types 1xx, 2xx, 3xx, 4xx) will have another discount added to the existing current premium price. You'll need
 to discount an additional 15% in each product, resulting in a 15% total invoice discount.
 
-_Copy all files from `/testData/3.a/results` folder to your `test/resources` folder and overwrite the existing files.
+_Copy all files from `/kata-test-data/3.a/results` folder to your `test/resources` folder and overwrite the existing files.
 Execute the tests and try to modify your code to accomplish this new version of the tests._
 
 ### 4. New External Services version
