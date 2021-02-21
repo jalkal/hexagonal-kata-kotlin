@@ -5,9 +5,12 @@ import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.github.caay2000.application.domain.AccountApplication
 import com.github.caay2000.application.infrastructure.http.AccountController
+import com.github.caay2000.external.client.AccountClient
+import com.github.caay2000.external.client.ProductClient
 import com.github.caay2000.external.model.AccountClientConfiguration
 import com.github.caay2000.external.model.ProductClientConfiguration
 import com.github.caay2000.external.model.ProductRepositoryConfiguration
+import com.github.caay2000.external.repo.ProductRepository
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
@@ -33,9 +36,9 @@ fun Application.main() {
             single { ProductClientConfiguration() }
             single { ProductRepositoryConfiguration() }
 
-            // single { AccountClient(configuration = get()) }
-            // single { ProductClient(configuration = get()) }
-            // single { ProductRepository(configuration = get()) }
+            single { AccountClient(configuration = get()) }
+            single { ProductClient(configuration = get()) }
+            single { ProductRepository(configuration = get()) }
 
             single {
                 AccountApplication(
@@ -44,7 +47,7 @@ fun Application.main() {
                     productRepository = get()
                 )
             }
-            // single { AccountController(accountApplication = get()) }
+            single { AccountController(accountApplication = get()) }
         })
     }
 

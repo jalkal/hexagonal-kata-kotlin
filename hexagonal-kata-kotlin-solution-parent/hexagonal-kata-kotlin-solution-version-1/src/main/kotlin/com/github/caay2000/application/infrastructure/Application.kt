@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.github.caay2000.application.domain.AccountApplication
+import com.github.caay2000.application.infrastructure.adapter.AccountAdapter
+import com.github.caay2000.application.infrastructure.adapter.ProductAdapter
 import com.github.caay2000.application.infrastructure.http.AccountController
 import com.github.caay2000.external.client.AccountClient
 import com.github.caay2000.external.client.ProductClient
@@ -31,23 +33,15 @@ fun Application.main() {
 
     install(Koin) {
         modules(module {
+            single { AccountClient(AccountClientConfiguration()) }
+            single { ProductClient(ProductClientConfiguration()) }
+            single { ProductRepository(ProductRepositoryConfiguration()) }
 
-            single { AccountClientConfiguration() }
-            single { ProductClientConfiguration() }
-            single { ProductRepositoryConfiguration() }
+            single { AccountAdapter(accountClient = get()) }
+            single { ProductAdapter(productClient = get(), productRepository = get()) }
 
-            single { AccountClient(configuration = get()) }
-            single { ProductClient(configuration = get()) }
-            single { ProductRepository(configuration = get()) }
-
-            single {
-                AccountApplication(
-                    accountClient = get(),
-                    productClient = get(),
-                    productRepository = get()
-                )
-            }
-            single { AccountController(accountApplication = get()) }
+            single { AccountApplication(accountApi = get<AccountAdapter>(), productApi = get<ProductAdapter>()) }
+            single { AccountController(accountApi = get<AccountApplication>()) }
         })
     }
 
