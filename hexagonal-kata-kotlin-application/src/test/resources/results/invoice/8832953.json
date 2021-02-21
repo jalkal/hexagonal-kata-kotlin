@@ -1,0 +1,24 @@
+{
+  "customer" : {
+    "accountId" : "8832953",
+    "customerName" : "Carla Casey"
+  },
+  "products" : [ {
+    "id" : "120",
+    "productName" : "TV PREMIUM",
+    "productPrice" : 120
+  }, {
+    "id" : "200",
+    "productName" : "LAND LINE",
+    "productPrice" : 20
+  }, {
+    "id" : "300",
+    "productName" : "PHONE",
+    "productPrice" : 60
+  }, {
+    "id" : "400",
+    "productName" : "INTERNET (20MB)",
+    "productPrice" : 40
+  } ],
+  "totalAmount" : 240
+}
