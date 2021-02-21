@@ -4,9 +4,9 @@ import com.github.caay2000.application.api.model.Account
 import com.github.caay2000.application.api.model.AccountId
 import com.github.caay2000.application.api.model.Invoice
 import com.github.caay2000.application.api.model.Product
-import com.github.caay2000.application.api.internal.port.ProductApi
-import com.github.caay2000.application.api.external.port.AccountApi as ExternalAccountApi
-import com.github.caay2000.application.api.internal.port.AccountApi as InternalAccountApi
+import com.github.caay2000.application.api.internal.ProductApi
+import com.github.caay2000.application.api.external.AccountApi as ExternalAccountApi
+import com.github.caay2000.application.api.internal.AccountApi as InternalAccountApi
 
 class AccountApplication(private val accountApi: InternalAccountApi, private val productApi: ProductApi) : ExternalAccountApi {
     override fun getAccount(accountId: AccountId): Account {

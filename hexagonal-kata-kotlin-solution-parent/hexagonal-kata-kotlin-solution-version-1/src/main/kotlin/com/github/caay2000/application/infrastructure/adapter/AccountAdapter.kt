@@ -1,6 +1,6 @@
 package com.github.caay2000.application.infrastructure.adapter
 
-import com.github.caay2000.application.api.internal.port.AccountApi
+import com.github.caay2000.application.api.internal.AccountApi
 import com.github.caay2000.application.api.model.Account
 import com.github.caay2000.application.api.model.AccountId
 import com.github.caay2000.application.api.model.toAccountId

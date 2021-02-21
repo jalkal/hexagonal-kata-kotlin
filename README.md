@@ -10,13 +10,12 @@ The idea of this kata is to learn how to implement a hexagonal architecture proj
     * [Rules (TODO)](#rules--todo-)
     * [Components (TODO)](#components--todo-)
     * [Kata Structure](#kata-structure)
-
-    + [1. Introduction](#1-introduction)
-    + [2. First Changes](#2-first-changes)
-    + [3. More changes on discounts](#3-more-changes-on-discounts)
-    + [4. New External Services version](#4-new-external-services-version)
-    + [5. That's all folks](#5-that-s-all-folks)
-    + [6. Hexagonal architecture to the rescue](#6-hexagonal-architecture-to-the-rescue)
+        + [1. Introduction](#1-introduction)
+        + [2. First Changes](#2-first-changes)
+        + [3. More changes on discounts](#3-more-changes-on-discounts)
+        + [4. New External Services version](#4-new-external-services-version)
+        + [5. That's all folks](#5-that-s-all-folks)
+        + [6. Hexagonal architecture to the rescue](#6-hexagonal-architecture-to-the-rescue)
 
 ## Assumptions (TODO)
 
@@ -26,7 +25,7 @@ Just practising hexagonal, nothing about TDD or other practices
 
 There are multiple explanations out there about the benefits of hexagonal architecture that you can read to understand them, but as a summary, I would say:
 
-- Infrastructure independence,
+- Infrastructure independence
 - Business logic isolation
 - Easy to test
 - High Maintainability
@@ -263,9 +262,79 @@ Now, you just need to make the controller tests green again. To do it, there are
 class and made them accomplish the controller specification. Why? because this kata is to see the benefits of the hexagonal architecture, not to explore the
 amazing possibilities of Jackson, neither to create your own JSON serializer. So do it easy and simple for this kata.
 
+Execute your Controller tests and see them all green! We're done, we have our application following a great hexagonal architecture!
+
+### 7. Hexagonal Architecture, and what now?
+
+That's what you can think, what now? We have an Application class more or less similar to the one we already had without hexagonal, but we also have multiple
+classes more. This is a prepared kata, but someone can even call it class explosion...
+
+Let's think what are the main benefits on this exercise. The first and most important one that you will realise quite soon (if not already) is that we aren't
+depending on any external dependency to execute our business logic. This means that you can completely design, implement and test it without any external
+interference (_Business logic isolation_).
+
+This also means, that any change in any external dependency, will not affect your business rule. If we change a repository by a client, or any other
+infrastructure change, should not affect your business logic (_Infrastructure independence_).
+
+You can also test every part isolated from the others. Talking about unit tests, you just need 3 different layers of unit tests, Controller or Consumers,
+business logic and adapters (_Easy to test_).
+
+Also, as you will see in the next point, maitaining the code is quite easy, because everything is separated and there is no coupling between business and
+infrastructure (_High Maintainability_).
+
+There's also something quite interesting in this kata, that is the ProductAdapter. If you remember the initial implementation, we had both ProductClient and
+ProductRepository. But when we applied the hexagonal concepts, we just left one ProductAdapter. That's really important, because as exaplined before, we don't
+mind where the data come from, we just know that we're gonna use it. In our case, we call just one Api (or adapter) but the adapter itself needs to call many
+different infrastructures to accomplish its own contract, in this case, the client and the repository.
+
+### 8. Lets continue with the exercise
+
+So, now that we have everything modeled correctly with a new and shiny hexagonal architecture, let's try to do the exercise again
+
+#### 8.a Update to the external services version 2
+
+Same as before, update the version to 2 and make everything compile again. You will see that your modifications should not imply the business logic, as there is
+no change there. Just modify adapters and controller and ready to test again.
+
+#### 8.b Premium discounts
+
+You need now to apply the premium discounts (_same as we made before_). We'll need to make some choices here. First, we can continue using the Product model
+that we have until now (the same for external and internal model) but that would be a little nasty. Why? because we need to override the price with the premium
+one in soma cases. So would be nice to have a Product model coming from our internal model that gives us all the data that we want, and another one for our
+external model that returns to our consumers that already processed Product information. 
+
+Let's make that change. It will affect our contracts, because we are going to modify our returning object in the external port, but sometimes is needed. 
+Remember to move the existing/new models to the correct package (in the case they are just internal or external models)
 
 
 
 
+--------------------------------
 
+#### 2.c Your premium accounts have 'special' discounts. Apply them
 
+This new version of the external services returns more data. Account data has a special field named premiumAccount, that will let you know who is eligible for a
+special discount. Apply those premium prices to all the accounts.
+
+_Copy all files from `/kata-test-data/2.c/results` folder to your `test/resources` folder and overwrite the existing files. Execute the tests and try to modify
+your code to accomplish this new version of the tests._
+
+### 3. More changes in discounts
+
+#### 3.a New Discounts for your premium accounts
+
+There is a new feature to be applied to your application. From now on, all the premium accounts that have a product of each type (types 1xx, 2xx, 3xx, 4xx) will
+have another discount added to the existing current premium price. You'll need to discount an additional 15% on each product, resulting in a 15% total invoice
+discount.
+
+_Copy all files from `/kata-test-data/3.a/results` folder to your `test/resources` folder and overwrite the existing files. Execute the tests and try to modify
+your code to accomplish this new version of the tests._
+
+### 4. New External Services version
+
+#### 4.a Update external-services version
+
+You need to update external services to version `3`. This one brings some upgrades to the products. From now on, `ProductsRepository` has been removed, and all
+the product information has been moved to the new `ProductsClient`.
+
+Just update the version and make all tests green again

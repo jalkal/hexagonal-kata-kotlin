@@ -1,6 +1,6 @@
 package com.github.caay2000.application.infrastructure.http
 
-import com.github.caay2000.application.api.external.port.AccountApi
+import com.github.caay2000.application.api.external.AccountApi
 import com.github.caay2000.application.api.model.Account
 import com.github.caay2000.application.api.model.Product
 import com.github.caay2000.application.api.model.toAccountId
@@ -48,7 +48,7 @@ class AccountController(private val accountApi: AccountApi) {
 
     data class AccountResponse(
         val accountId: String,
-        val accountName: String
+        val customerName: String
     )
 
     data class ProductResponse(
@@ -70,7 +70,7 @@ class AccountController(private val accountApi: AccountApi) {
 
     private fun Account.toAccountResponse() = AccountResponse(
         accountId = id.id,
-        accountName = name
+        customerName = name
     )
 
     private fun Product.toProductResponse() = ProductResponse(

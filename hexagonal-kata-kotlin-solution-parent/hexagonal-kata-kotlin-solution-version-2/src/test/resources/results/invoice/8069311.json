@@ -1,0 +1,22 @@
+{
+  "account" : {
+    "accountId" : "8069311",
+    "name" : "Uriel Torres",
+    "address" : {
+      "addressLine" : "P.O. Box 853, 5399 Dolor Av.",
+      "city" : "San Pietro Mucolano",
+      "postalCode" : "701410"
+    },
+    "email" : "eget@odio.ca"
+  },
+  "products" : [ {
+    "id" : "200",
+    "name" : "LAND LINE",
+    "price" : 16.00
+  }, {
+    "id" : "300",
+    "name" : "PHONE",
+    "price" : 50.00
+  } ],
+  "totalAmount" : 66.00
+}

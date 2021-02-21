@@ -32,13 +32,9 @@ fun Application.main() {
     install(Koin) {
         modules(module {
 
-            single { AccountClientConfiguration() }
-            single { ProductClientConfiguration() }
-            single { ProductRepositoryConfiguration() }
-
-            single { AccountClient(configuration = get()) }
-            single { ProductClient(configuration = get()) }
-            single { ProductRepository(configuration = get()) }
+            single { AccountClient(configuration = AccountClientConfiguration()) }
+            single { ProductClient(configuration = ProductClientConfiguration()) }
+            single { ProductRepository(configuration = ProductRepositoryConfiguration()) }
 
             single {
                 AccountApplication(

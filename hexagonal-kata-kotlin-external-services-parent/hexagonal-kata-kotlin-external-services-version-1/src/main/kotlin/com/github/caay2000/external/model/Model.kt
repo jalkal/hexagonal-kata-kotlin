@@ -8,5 +8,5 @@ data class Product(
 
 data class Account(
     val accountId: String,
-    val accountName: String
+    val customerName: String
 )
