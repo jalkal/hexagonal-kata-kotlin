@@ -6,13 +6,13 @@ import com.github.caay2000.external.model.Account
 import com.github.caay2000.external.model.Product
 import com.github.caay2000.external.repo.ProductRepository
 
-class CustomerApplication(
+class AccountApplication(
     private val accountClient: AccountClient,
     private val productClient: ProductClient,
     private val productRepository: ProductRepository
 ) {
 
-    fun getCustomerByAccountId(accountId: String): Account {
+    fun getAccountByAccountId(accountId: String): Account {
 
         return accountClient.getAccountById(accountId)
     }
@@ -29,21 +29,21 @@ class CustomerApplication(
 
     fun getInvoiceByAccountId(accountId: String): Invoice {
 
-        val customer = accountClient.getAccountById(accountId)
-        val customerProducts = getProductsByAccountId(accountId)
+        val account = accountClient.getAccountById(accountId)
+        val accountProducts = getProductsByAccountId(accountId)
 
         return Invoice(
-            customer = customer,
-            products = customerProducts.map {
-                if (customer.premiumCustomer) {
+            account = account,
+            products = accountProducts.map {
+                if (account.premiumAccount) {
                     it.copy(price = it.premiumPrice)
                 } else {
                     it
                 }
             },
-            totalAmount = customerProducts.map {
-                if (customer.premiumCustomer) {
-                    if(customerProducts.size == 4){
+            totalAmount = accountProducts.map {
+                if (account.premiumAccount) {
+                    if(accountProducts.size == 4){
                         it.premiumPrice
                     } else {
                         it.premiumPrice
@@ -56,7 +56,7 @@ class CustomerApplication(
     }
 
     data class Invoice(
-        val customer: Account,
+        val account: Account,
         val products: List<Product>,
         val totalAmount: Int
     )

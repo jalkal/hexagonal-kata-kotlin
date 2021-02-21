@@ -1,7 +1,7 @@
 {
-  "customer" : {
+  "account" : {
     "accountId" : "8729755",
-    "customerName" : "Silas Mack"
+    "accountName" : "Silas Mack"
   },
   "products" : [ {
     "id" : "300",

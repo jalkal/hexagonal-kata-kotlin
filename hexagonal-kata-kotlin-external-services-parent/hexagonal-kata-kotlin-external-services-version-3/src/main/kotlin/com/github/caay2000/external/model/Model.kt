@@ -17,5 +17,5 @@ data class Account(
     val postalCode: String,
     val email: String,
     val birthDate: LocalDate,
-    val premiumCustomer: Boolean
+    val premiumAccount: Boolean
 )

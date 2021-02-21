@@ -1,21 +1,21 @@
 package com.github.caay2000.application.infrastructure.http
 
-import com.github.caay2000.application.domain.CustomerApplication
+import com.github.caay2000.application.domain.AccountApplication
 import io.ktor.application.ApplicationCall
 import io.ktor.application.call
 import io.ktor.response.respond
 import io.ktor.util.pipeline.PipelineContext
 import java.math.BigDecimal
 
-class CustomerController(private val customerApplication: CustomerApplication) {
+class AccountController(private val accountApplication: AccountApplication) {
 
-    fun getCustomerByAccountId(): suspend PipelineContext<Unit, ApplicationCall>.(Unit) -> Unit = {
+    fun getAccountByAccountId(): suspend PipelineContext<Unit, ApplicationCall>.(Unit) -> Unit = {
 
         val accountId = call.parameters["accountId"] ?: throw IllegalArgumentException("parameter accountId not found")
 
-        val result = customerApplication.getCustomerByAccountId(accountId)
+        val result = accountApplication.getAccountByAccountId(accountId)
 
-        call.respond(CustomerResponse(
+        call.respond(AccountResponse(
                 accountId = result.accountId,
                 name = result.name,
                 address = AddressResponse(
@@ -31,7 +31,7 @@ class CustomerController(private val customerApplication: CustomerApplication) {
 
         val accountId = call.parameters["accountId"] ?: throw IllegalArgumentException("parameter accountId not found")
 
-        val result = customerApplication.getProductsByAccountId(accountId).map {
+        val result = accountApplication.getProductsByAccountId(accountId).map {
             ProductNoPriceResponse(
                     id = it.id,
                     name = it.name
@@ -45,18 +45,18 @@ class CustomerController(private val customerApplication: CustomerApplication) {
 
         val accountId = call.parameters["accountId"] ?: throw IllegalArgumentException("parameter accountId not found")
 
-        val result = customerApplication.getInvoiceByAccountId(accountId)
+        val result = accountApplication.getInvoiceByAccountId(accountId)
 
         call.respond(InvoiceResponse(
-                customer = CustomerResponse(
-                        accountId = result.customer.accountId,
-                        name = result.customer.name,
+                account = AccountResponse(
+                        accountId = result.account.accountId,
+                        name = result.account.name,
                         address = AddressResponse(
-                                addressLine = result.customer.address,
-                                city = result.customer.city,
-                                postalCode = result.customer.postalCode
+                                addressLine = result.account.address,
+                                city = result.account.city,
+                                postalCode = result.account.postalCode
                         ),
-                        email = result.customer.email
+                        email = result.account.email
                 ),
                 products = result.products.map {
                     ProductResponse(
@@ -69,7 +69,7 @@ class CustomerController(private val customerApplication: CustomerApplication) {
         ))
     }
 
-    data class CustomerResponse(
+    data class AccountResponse(
             val accountId: String,
             val name: String,
             val address: AddressResponse,
@@ -94,7 +94,7 @@ class CustomerController(private val customerApplication: CustomerApplication) {
     )
 
     data class InvoiceResponse(
-            val customer: CustomerResponse,
+            val account: AccountResponse,
             val products: List<ProductResponse>,
             val totalAmount: BigDecimal
     )

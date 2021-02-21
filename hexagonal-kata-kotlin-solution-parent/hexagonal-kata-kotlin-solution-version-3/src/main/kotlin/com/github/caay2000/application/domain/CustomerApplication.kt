@@ -7,13 +7,13 @@ import com.github.caay2000.external.model.Product
 import com.github.caay2000.external.repo.ProductRepository
 import java.math.BigDecimal
 
-class CustomerApplication(
+class AccountApplication(
     private val accountClient: AccountClient,
     private val productClient: ProductClient,
     private val productRepository: ProductRepository
 ) {
 
-    fun getCustomerByAccountId(accountId: String): Account {
+    fun getAccountByAccountId(accountId: String): Account {
 
         return accountClient.getAccountById(accountId)
     }
@@ -30,21 +30,21 @@ class CustomerApplication(
 
     fun getInvoiceByAccountId(accountId: String): Invoice {
 
-        val customer = accountClient.getAccountById(accountId)
-        val customerProducts = getProductsByAccountId(accountId)
+        val account = accountClient.getAccountById(accountId)
+        val accountProducts = getProductsByAccountId(accountId)
 
         return Invoice(
-            customer = customer,
-            products = customerProducts.map {
+            account = account,
+            products = accountProducts.map {
                 InvoiceProduct(
                     id = it.id,
                     name = it.name,
-                    price = getPrice(it, customer, customerProducts)
+                    price = getPrice(it, account, accountProducts)
                 )
             },
-            totalAmount = customerProducts.map {
-                if (customer.premiumCustomer) {
-                    if (customerProducts.size == 4) {
+            totalAmount = accountProducts.map {
+                if (account.premiumAccount) {
+                    if (accountProducts.size == 4) {
                         it.premiumPrice.toBigDecimal() * BigDecimal(0.85)
                     } else {
                         it.premiumPrice.toBigDecimal()
@@ -56,9 +56,9 @@ class CustomerApplication(
         )
     }
 
-    private fun getPrice(it: Product, customer: Account, customerProducts: List<Product>): BigDecimal {
-        return if (customer.premiumCustomer) {
-            if (customerProducts.size == 4) {
+    private fun getPrice(it: Product, account: Account, accountProducts: List<Product>): BigDecimal {
+        return if (account.premiumAccount) {
+            if (accountProducts.size == 4) {
                 it.premiumPrice.toBigDecimal().multiply(BigDecimal(0.85))
             } else {
                 it.premiumPrice.toBigDecimal()
@@ -69,7 +69,7 @@ class CustomerApplication(
     }
 
     data class Invoice(
-        val customer: Account,
+        val account: Account,
         val products: List<InvoiceProduct>,
         val totalAmount: BigDecimal
     )

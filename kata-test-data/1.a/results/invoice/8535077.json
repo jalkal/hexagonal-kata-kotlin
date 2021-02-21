@@ -1,7 +1,7 @@
 {
-  "customer": {
+  "account": {
     "accountId": "8535077",
-    "customerName": "Baxter Combs"
+    "accountName": "Baxter Combs"
   },
   "products": [],
   "totalAmount": 0

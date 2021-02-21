@@ -17,5 +17,5 @@ data class AccountData(
     val postalCode: String,
     val email: String,
     val birthDate: LocalDate,
-    val premiumCustomer: Boolean = id.toInt() % 2 == 0 || id.toInt() % 3 == 1
+    val premiumAccount: Boolean = id.toInt() % 2 == 0 || id.toInt() % 3 == 1
 )

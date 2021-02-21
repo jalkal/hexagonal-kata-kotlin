@@ -19,7 +19,7 @@ class AccountClient(configuration: AccountClientConfiguration) {
                 postalCode = data.postalCode,
                 email = data.email,
                 birthDate = data.birthDate,
-                premiumCustomer = data.premiumCustomer
+                premiumAccount = data.premiumAccount
             )
         }
         throw AccountClientException()

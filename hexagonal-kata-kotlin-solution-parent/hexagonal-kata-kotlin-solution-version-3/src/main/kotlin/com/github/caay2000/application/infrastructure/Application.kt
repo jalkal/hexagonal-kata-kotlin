@@ -3,8 +3,8 @@ package com.github.caay2000.application.infrastructure
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import com.github.caay2000.application.domain.CustomerApplication
-import com.github.caay2000.application.infrastructure.http.CustomerController
+import com.github.caay2000.application.domain.AccountApplication
+import com.github.caay2000.application.infrastructure.http.AccountController
 import com.github.caay2000.external.client.AccountClient
 import com.github.caay2000.external.client.ProductClient
 import com.github.caay2000.external.model.AccountClientConfiguration
@@ -41,13 +41,13 @@ fun Application.main() {
             single { ProductRepository(configuration = get()) }
 
             single {
-                CustomerApplication(
+                AccountApplication(
                     accountClient = get(),
                     productClient = get(),
                     productRepository = get()
                 )
             }
-            single { CustomerController(customerApplication = get()) }
+            single { AccountController(accountApplication = get()) }
         })
     }
 
@@ -65,8 +65,8 @@ fun Application.main() {
     }
 
     routing {
-        get("/customer/{accountId}", get<CustomerController>().getCustomerByAccountId())
-        get("/customer/{accountId}/products", get<CustomerController>().getProductsByAccountId())
-        get("/customer/{accountId}/invoice", get<CustomerController>().getInvoiceByAccountId())
+        get("/account/{accountId}", get<AccountController>().getAccountByAccountId())
+        get("/account/{accountId}/products", get<AccountController>().getProductsByAccountId())
+        get("/account/{accountId}/invoice", get<AccountController>().getInvoiceByAccountId())
     }
 }
