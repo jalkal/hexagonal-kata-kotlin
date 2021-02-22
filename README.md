@@ -8,17 +8,15 @@ _Hexagon loading image property of [Ferenc Horvat](https://dribbble.com/ferencho
 ## Table of Contents
 
 - [hexagonal-kata-kotlin](#hexagonal-kata-kotlin)
-    * [Assumptions (TODO)](#assumptions--todo-)
-    * [Benefits (TODO)](#benefits--todo-)
-    * [Rules (TODO)](#rules--todo-)
-    * [Components (TODO)](#components--todo-)
+    * [Table of Contents](#table-of-contents)
+    * [Disclaimers (TODO)](#disclaimers--todo-)
+    * [Why? (TODO)](#why---todo-)
+    * [How to? (TODO)](#how-to---todo-)
     * [Kata Structure](#kata-structure)
         + [1. Introduction](#1-introduction)
-        + [2. First Changes](#2-first-changes)
-        + [3. More changes on discounts](#3-more-changes-on-discounts)
-        + [4. New External Services version](#4-new-external-services-version)
-        + [5. That's all folks](#5-that-s-all-folks)
-        + [6. Hexagonal architecture to the rescue](#6-hexagonal-architecture-to-the-rescue)
+        + [2. Non-Hexagonal Solution](#2-non-hexagonal-solution)
+        + [3. Hexagonal Architecture Solution](#3-hexagonal-architecture-solution)
+        + [4. Exercise](#4-exercise)
 
 ## Disclaimers (TODO)
 
@@ -37,7 +35,7 @@ There are multiple explanations out there about the benefits of hexagonal archit
 
 ![Hexagonal Diagram](hexagonal.png)
 
-- never use something from outside (app does not use service)
+- never use something from outside (the app does not use service)
 
 ### Components (TODO)
 
@@ -53,35 +51,35 @@ Your new job starts today in a very famous media group. You have been told that 
 to develop. They will need account, product and invoice information, and the last intern created a simple application that accomplishes what they want nowadays.
 Anyway, you have been told, that you will need to add new features to it quite soon, so it's better to start taking a look at it.
 
-#### 1.a Open the `hexagonal-kata-kotlin-application` module
+#### 1.1 Open the `hexagonal-kata-kotlin-application` module
 
 You will see a simple Ktor application (Ktor & Koin are not relevant to the kata itself) with 3 REST endpoints: `getAccountByAccountId`
 , `getProductsByAccountId` and `getInvoiceByAccountId`. These endpoints call an `AccountApplication`, and this class is the one that retrieves account and
 product information from the company currently services.
 
-#### 1.b Execute `AccountControllerTest` to check that everything works
+#### 1.2 Execute `AccountControllerTest` to check that everything works
 
 There is an `AccountControllerTest` class that checks that everything works as expected. You can execute it to see that everything is green, working and
 fantastic. Take a look at the rest of the application and be sure that you understand every bit of it before continuing.
 
-### 2. First Changes
+### 2. Non-Hexagonal Solution
 
-#### 2.a Update the external services dependency to the new version
+#### 2.1 Update the external services dependency to the new version
 
 Seems that since the last intern left the company, has been a lot of changes in the company servers, and our current application is a little outdated.
 
 Just open your pom.xml file and update the `<external.services.version>1</external.services.version>` to use version `2`. Automatically you will realise that
 these new external services are breaking your current implementation. Make your AccountApplication compile again.
 
-#### 2.b Update now the json returned from your controller
+#### 2.2 Update now the json returned from your controller
 
 Seems that changing just the data providers is not enough. Now that you have new data, your consumers also want to know about it. Seems that they have all their
-work done in their side, so your manager sends you the JSON format you'll need to return.
+work is done on their side, so your manager sends you the JSON format you'll need to return.
 
 _Copy all files from `/kata-test-data/2.b/results` folder to your `test/resources` folder and overwrite the existing files. Execute the tests and try to modify
 your code to accomplish this new version of the tests._
 
-#### 2.c Your premium accounts have 'special' discounts. Apply them
+#### 2.3 Your premium accounts have 'special' discounts. Apply them
 
 This new version of the external services returns more data. Account data has a special field named premiumAccount, that will let you know who is eligible for a
 special discount. Apply those premium prices to all the accounts.
@@ -89,9 +87,7 @@ special discount. Apply those premium prices to all the accounts.
 _Copy all files from `/kata-test-data/2.c/results` folder to your `test/resources` folder and overwrite the existing files. Execute the tests and try to modify
 your code to accomplish this new version of the tests._
 
-### 3. More changes in discounts
-
-#### 3.a New Discounts for your premium accounts
+#### 2.4 New Discounts for your premium accounts
 
 There is a new feature to be applied to your application. From now on, all the premium accounts that have a product of each type (types 1xx, 2xx, 3xx, 4xx) will
 have another discount added to the existing current premium price. You'll need to discount an additional 15% on each product, resulting in a 15% total invoice
@@ -100,20 +96,18 @@ discount.
 _Copy all files from `/kata-test-data/3.a/results` folder to your `test/resources` folder and overwrite the existing files. Execute the tests and try to modify
 your code to accomplish this new version of the tests._
 
-### 4. New External Services version
-
-#### 4.a Update external-services version
+#### 2.5 Update external-services version
 
 You need to update external services to version `3`. This one brings some upgrades to the products. From now on, `ProductsRepository` has been removed, and all
 the product information has been moved to the new `ProductsClient`.
 
 Just update the version and make all tests green again
 
-### 5. That's all folks
+#### 2.6 That's all folks
 
-Now, after all these changes, let's think about it. All of them has been really easy (it's not the objective of the kata)
-. The main point you should realise is that just two of these changes are changes to your business rules. Have you changed your application more than just 2
-times to add these new features? Then, you are doing something wrong
+Now, after all these changes, let's think about it. All of them has been really easy (it's not the objective of the kata). The main point you should realise is
+that just two of these changes are changes to your business rules. Have you changed your application more than just 2 times to add these new features? Then, you
+are doing something wrong
 
 The main idea is that, if you need to add any change, but is not a business change, your `Application` or business rules, should not be modified. You don't need
 to change anything in those classes. It's quite a logic thing.
@@ -121,16 +115,16 @@ to change anything in those classes. It's quite a logic thing.
 External changes are external changes, so they should be treated outside your business logic, regardless if they affect the clients/repositories you consume
 from or the rest of the controllers / other services you offer. So let's try to apply some hexagonal architecture here and see if that improves our code.
 
-### 6. Hexagonal architecture to the rescue
+### 3. Hexagonal Architecture Solution
 
-#### 6.a Revert or stash your changes until now
+#### 3.1 Revert or stash your changes until now
 
 Just revert or stash your changes until now, and start again from scratch. We are now going to follow the same steps, but with a nice hexagonal architecture
 module. So, just check you have your initial code again and all the tests are green.
 
 Take your time to remember how was the application in the first iteration. As you already know how the application is, we'll go faster.
 
-#### 6.b Create Hexagonal architecture package structure
+#### 3.2 Create Hexagonal Architecture package structure
 
 First, we need to create the package structure for our hexagonal architecture. I usually model everything inside an `api` package, but there are other options (
 model, domain, and thousands more...). Let's create the `api` package.
@@ -148,7 +142,7 @@ You should have something similar to this:
 - api/internal/model
 - api/internal/port
 
-#### 6.c Lets create our first external port
+#### 3.3 Lets create our first external port
 
 As an external port, we want to model the services we'll offer to our consumers, so in this case, we'll need a `getAccount`, a `getProducts` and a
 `getInvoice` functions. Each of them receives an `AccountId`, and they return different models. I would propose have an interface (call it AccountApi) with the
@@ -156,8 +150,8 @@ following contract:
 
 ```kotlin
     fun getAccount(accountId: AccountId): Account
-fun getProducts(accountId: AccountId): List<Product>
-fun getInvoice(accountId: AccountId): Invoice
+    fun getProducts(accountId: AccountId): List<Product>
+    fun getInvoice(accountId: AccountId): Invoice
 ```
 
 Then, you will need to create, in the model folder, each returning class. At the moment, just use the fields that you need to accomplish your test contract. Try
@@ -166,7 +160,7 @@ of this kata, so you can use BigDecimal perfectly).
 
 We just created our first external-port! That was easy!
 
-#### 6.d Continue now with our internal ports
+#### 3.4 Continue now with our internal ports
 
 Now that we have our external port well-defined, would be great to define also the internal ports that our application will need. In this case, as we already
 know what the application will do and which data we required to accomplish it, it will be easy. In other cases, you will need to analyse your requirements and
@@ -183,21 +177,21 @@ the products of an account (with all the product information).
 
 ```kotlin
     fun getAccount(accountId: AccountId): Account
-fun getProducts(accountId: AccountId): List<Product>
+    fun getProducts(accountId: AccountId): List<Product>
 ```
 
 You'll need also to create the models you use in your interfaces in the internal/model folder, `AccountId`, `Account`
-and `Product`. In this case, as you can see, the models in your internal folder are exactly the same as the models on the external folder. So we can create them
-all together in a model folder outside external/internal folders. This is something controversial because your input model could be different from the output
-model, even having the same fields. I'll explain this point [later on](#different-external-internal-model).
+and `Product`. In this case, as you can see, the models in your internal folder are the same as the models on the external folder. So we can create them all
+together in a model folder outside external/internal folders. This is something controversial because your input model could be different from the output model,
+even having the same fields. I'll explain this point [later on](#different-external-internal-model).
 
-So now, you api folder structure should look like this:
+So now, your API folder structure should look like this:
 
 - api/model (Model.kt)
 - api/external/port (AccountApi)
 - api/internal/port (AccountApi, ProductApi)
 
-#### 6.e With our internal ports in place, we can implement our business logic (external port)
+#### 3.5 With our internal ports in place, we can implement our business logic (external port)
 
 Yes, we don't really need to know how these internal ports will retrieve the data, neither where they retrieve it from, we just know that they will offer us
 everything we need. So, having this in mind, we can start to create our business logic to accomplish the tests we have on our controller.
@@ -208,7 +202,10 @@ the whole application, testing all our business logic, without external componen
 We need a class that implements our external port, and this class will also receive as parameters the two internal ports we have just created.
 
 ```kotlin
-    class AccountApplication(private val accountApi: InternalAccountApi, private val productApi: ProductApi) : ExternalAccountApi
+    class AccountApplication(
+            private val accountApi: InternalAccountApi,
+            private val productApi: ProductApi
+        ) : ExternalAccountApi
 ```
 
 As you can see, I played with the import alias to distinguish our external and internal ports. Then, just implement the functions you need to accomplish
@@ -221,7 +218,7 @@ _Voilà_, you have your business logic done, with tests, and no external depende
 , `api. external` or `api.internal` packages). If you have any external package, you've made something wrong, and we'll be using directly something from an
 external component, so review it!
 
-#### 6.f Internal ports implementations
+#### 3.6 Internal ports implementations
 
 Now that you have our external port implemented, we can do the same with our internal ports. As you will see, its also quite easy. Let's start with the
 AccountApi one. We need a class that implements that AccountApi. We can call that class, AccountAdapter. And to accomplish our AccountApi contract, it will need
@@ -238,25 +235,25 @@ and we'll need to do some logic to be able to accomplish our ProductApi contract
 Now that we have both internal APIs implementations ready, you can do some tests (if you did not) to check that it works as expected. Remember that you will
 need to mock the external dependencies.
 
-#### 6.g Make the project green again
+#### 3.7 Make the project green again
 
 Having everything ready, you can solve the compilation problems on the controller and Application.kt file. If you are not familiar with Koin or any other
 DependencyInjection framework, I'll give you the solution below:
 
 ```kotlin
     install(Koin) {
-    modules(module {
-        single { AccountClient(AccountClientConfiguration()) }
-        single { ProductClient(ProductClientConfiguration()) }
-        single { ProductRepository(ProductRepositoryConfiguration()) }
-
-        single { AccountAdapter(accountClient = get()) }
-        single { ProductAdapter(productClient = get(), productRepository = get()) }
-
-        single { AccountApplication(accountApi = get<AccountAdapter>(), productApi = get<ProductAdapter>()) }
-        single { AccountController(accountApi = get<AccountApplication>()) }
-    })
-}
+        modules(module {
+            single { AccountClient(AccountClientConfiguration()) }
+            single { ProductClient(ProductClientConfiguration()) }
+            single { ProductRepository(ProductRepositoryConfiguration()) }
+    
+            single { AccountAdapter(accountClient = get()) }
+            single { ProductAdapter(productClient = get(), productRepository = get()) }
+    
+            single { AccountApplication(accountApi = get<AccountAdapter>(), productApi = get<ProductAdapter>()) }
+            single { AccountController(accountApi = get<AccountApplication>()) }
+        })
+    }
 ```
 
 As you can see, `AccountApplication` and `AccountController` need some help on the beans they should inject. Why? We need to specify to Koin that we are going
@@ -269,7 +266,7 @@ amazing possibilities of Jackson, neither to create your own JSON serializer. So
 
 Execute your Controller tests and see them all green! We're done, we have our application following a great hexagonal architecture!
 
-### 7. Hexagonal Architecture, and what now?
+### 4. Exercise
 
 This is the final diagram of how we have our project right now:
 
@@ -278,59 +275,57 @@ This is the final diagram of how we have our project right now:
 That's what you can think, what now? We have an Application class more or less similar to the one we already had without hexagonal, but we also have multiple
 classes more. This is a prepared kata, but someone can even call it class explosion...
 
-Let's think what are the main benefits on this exercise. The first and most important one that you will realise quite soon (if not already) is that we aren't
-depending on any external dependency to execute our business logic. This means that you can completely design, implement and test it without any external
+Let's think about what are the main benefits of this exercise. The first and most important one that you will realise quite soon (if not already) is that we
+aren't depending on any external dependency to execute our business logic. This means that you can completely design, implement and test it without any external
 interference (_Business logic isolation_).
 
-This also means, that any change in any external dependency, will not affect your business rule. If we change a repository by a client, or any other
+This also means, that any change in any external dependency, will not affect your business rule. If we change a repository by a client or any other
 infrastructure change, should not affect your business logic (_Infrastructure independence_).
 
 You can also test every part isolated from the others. Talking about unit tests, you just need 3 different layers of unit tests, Controller or Consumers,
 business logic and adapters (_Easy to test_).
 
-Also, as you will see in the next point, maitaining the code is quite easy, because everything is separated and there is no coupling between business and
+Also, as you will see in the next point, maintaining the code is quite easy, because everything is separated and there is no coupling between business and
 infrastructure (_High Maintainability_).
 
 There's also something quite interesting in this kata, that is the ProductAdapter. If you remember the initial implementation, we had both ProductClient and
-ProductRepository. But when we applied the hexagonal concepts, we just left one ProductAdapter. That's really important, because as explained before, we don't
-mind where the data come from, we just know that we're gonna use it. In our case, we call just one Api (or adapter) but the adapter itself needs to call many
-different infrastructures to accomplish its own contract, in this case, the client and the repository.
+ProductRepository. When we applied the hexagonal concepts, we just left one ProductAdapter. That's really important because as explained before, we don't mind
+where the data come from, we just know that we're going to use it. In our case, we call just one Api (or adapter) but the adapter itself needs to call many
+infrastructures to accomplish its own contract, in this case, the client and the repository.
 
-### 8. Lets continue with the exercise
+So, now that we have everything modelled correctly with a new and shiny hexagonal architecture, let's try to do the exercise again
 
-So, now that we have everything modeled correctly with a new and shiny hexagonal architecture, let's try to do the exercise again
-
-#### 8.a Update to the external services version 2
+#### 4.1 Update to the external services version 2
 
 Same as before, update the version to 2 and make everything compile again. You will see that your modifications should not imply the business logic, as there is
 no change there. Just modify adapters and controller and ready to test again. (copy `kata-test-data/2.b` files to `test/resources`)
 
-#### 8.b Premium discounts
+#### 4.2 Premium discounts
 
-You need now to apply the premium discounts (_same as we made before_). We'll need to make some choices here. First, we can continue using the Product model
-that we have until now (the same for external and internal model) but that would be a little nasty. Why? because we need to override the price with the premium
-one in soma cases. So would be nice to have a Product model coming from our internal model that gives us all the data that we want, and another one for our
-external model that returns to our consumers that already processed Product information.
+You need now to apply the premium discounts (_ the same as we made before_). We'll need to make some choices here. First, we can continue using the Product
+model that we have until now (the same for external and internal model) but that would be a little nasty. Why? because we need to override the price with the
+premium one in soma cases. So would be nice to have a Product model coming from the internal model that gives us all the data that we want, and another one for
+our external model that returns to our consumers that already processed Product information.
 
-> <a id="different-external-internal-model"></a>Usually is a good practice to have different models for internal and external port, because usually what
-> happens is that the internal ports data is raw data (data you request to apply business logic on it) while the external port model, usually, is a refined
+> <a id="different-external-internal-model"></a>Is Usually a good practice to have different models for the internal and external port because usually what
+> happens is that the internal ports' data is raw data (data you request to apply business logic on it) while the external port model, usually, is a refined
 > data that can have more or different fields. Even having the same number of fields, maybe these fields have a different meaning.
 
-Let's make that change. It will affect our contracts, because we are going to modify our returning object in the external port, but sometimes is needed.
-Remember to move the existing/new models to the correct package (in the case they are just internal or external models)
+Let's make that change. It will affect our contracts because we are going to modify our returning object in the external port but sometimes is needed. Remember
+to move the existing/new models to the correct package (in the case they are just internal or external models)
 
-Let's check after all the changes, that our tests works as expected (remember to copy `kata-test-data/2.c` files to `test/resources`)
+Let's check after all the changes, that our tests work as expected (remember to copy `kata-test-data/2.c` files to `test/resources`)
 
-#### 8.c More discounts
+#### 4.3 More discounts
 
 Now, let's apply the other rule. If the customer is premium, and it has a product of each type (1xx, 2xx, 3xx, 4xx) discount an additional 15% on each product.
 What do you need to accomplish this new rule? does it affect any external dependency?
 
 Of course, you just need to update your business logic, and it should be quite easy. Copy `kata-test-data/3.a` files to `test/resources`
 
-#### 8.d Last change
+#### 4.4 Last change
 
 You need to update again the external services to version `3`. This changes your external dependencies, but not your business logic, so, where should the
-changes be?
+changes are?
 
 Just update the version and make all tests green again
