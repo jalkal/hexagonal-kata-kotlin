@@ -301,9 +301,9 @@ no change there. Just modify adapters and controller and ready to test again.
 You need now to apply the premium discounts (_same as we made before_). We'll need to make some choices here. First, we can continue using the Product model
 that we have until now (the same for external and internal model) but that would be a little nasty. Why? because we need to override the price with the premium
 one in soma cases. So would be nice to have a Product model coming from our internal model that gives us all the data that we want, and another one for our
-external model that returns to our consumers that already processed Product information. 
+external model that returns to our consumers that already processed Product information.
 
-Let's make that change. It will affect our contracts, because we are going to modify our returning object in the external port, but sometimes is needed. 
+Let's make that change. It will affect our contracts, because we are going to modify our returning object in the external port, but sometimes is needed.
 Remember to move the existing/new models to the correct package (in the case they are just internal or external models)
 
 
