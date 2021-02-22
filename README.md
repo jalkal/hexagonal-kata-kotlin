@@ -3,7 +3,7 @@
 <img align="right" width="200" height="183" src="https://github.com/caay2000/hexagonal-kata-kotlin/blob/main/hexagonal-gif.gif">The idea of this kata is to
 learn how to implement a hexagonal architecture project while understanding some benefits that it will bring to you and your team.
 
-<small>_Hexagon loading image property of [Ferenc Horvat](https://dribbble.com/ferenchorvat)_</small>
+<sub>_Hexagon loading image property of [Ferenc Horvat](https://dribbble.com/ferenchorvat)_</sub>
 
 ## Table of Contents
 
