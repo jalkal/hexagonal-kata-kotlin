@@ -3,20 +3,18 @@
 <img align="right" width="200" height="183" src="https://github.com/caay2000/hexagonal-kata-kotlin/blob/main/hexagonal-gif.gif">The idea of this kata is to
 learn how to implement a hexagonal architecture project while understanding some benefits that it will bring to you and your team.
 
-_Hexagon loading image property of [Ferenc Horvat](https://dribbble.com/ferenchorvat)_
+<small>_Hexagon loading image property of [Ferenc Horvat](https://dribbble.com/ferenchorvat)_</small>
 
 ## Table of Contents
 
-- [hexagonal-kata-kotlin](#hexagonal-kata-kotlin)
-    * [Table of Contents](#table-of-contents)
-    * [Disclaimers (TODO)](#disclaimers--todo-)
-    * [Why? (TODO)](#why---todo-)
-    * [How to? (TODO)](#how-to---todo-)
-    * [Kata Structure](#kata-structure)
-        + [1. Introduction](#1-introduction)
-        + [2. Non-Hexagonal Solution](#2-non-hexagonal-solution)
-        + [3. Hexagonal Architecture Solution](#3-hexagonal-architecture-solution)
-        + [4. Exercise](#4-exercise)
+- [Disclaimers (TODO)](#disclaimers--todo-)
+- [Why? (TODO)](#why---todo-)
+- [How to? (TODO)](#how-to---todo-)
+- [Kata Structure](#kata-structure)
+    * [1. Introduction](#1-introduction)
+    * [2. Non-Hexagonal Solution](#2-non-hexagonal-solution)
+    * [3. Hexagonal Architecture Solution](#3-hexagonal-architecture-solution)
+    * [4. Exercise](#4-exercise)
 
 ## Disclaimers (TODO)
 
