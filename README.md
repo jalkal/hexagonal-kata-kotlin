@@ -1,6 +1,6 @@
 # hexagonal-kata-kotlin
 
-The idea of this kata is to learn how to implement a hexagonal architecture project while understanding some benefits that it will give to you and your team.
+<img align="right" width="200" height="183" src="https://github.com/caay2000/hexagonal-kata-kotlin/blob/main/hexagonal-gif.gif">The idea of this kata is to learn how to implement a hexagonal architecture project while understanding some benefits that it will give to you and your team.
 
 ## Table of Contents
 
