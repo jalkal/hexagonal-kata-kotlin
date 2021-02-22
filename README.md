@@ -1,6 +1,7 @@
 # hexagonal-kata-kotlin
 
-<img align="right" width="200" height="183" src="https://github.com/caay2000/hexagonal-kata-kotlin/blob/main/hexagonal-gif.gif">The idea of this kata is to learn how to implement a hexagonal architecture project while understanding some benefits that it will give to you and your team.
+<img align="right" width="200" height="183" src="https://github.com/caay2000/hexagonal-kata-kotlin/blob/main/hexagonal-gif.gif">The idea of this kata is to
+learn how to implement a hexagonal architecture project while understanding some benefits that it will give to you and your team.
 
 ## Table of Contents
 
@@ -31,6 +32,8 @@ There are multiple explanations out there about the benefits of hexagonal archit
 - High Maintainability
 
 ## Rules (TODO)
+
+![Hexagonal Diagram](hexagonal.png)
 
 - never use something from outside (app does not use service)
 
@@ -266,6 +269,10 @@ Execute your Controller tests and see them all green! We're done, we have our ap
 
 ### 7. Hexagonal Architecture, and what now?
 
+This is the final diagram of how we have our project right now:
+
+![Account Application Hexagonal Diagram](hexagonal-exercise.png)
+
 That's what you can think, what now? We have an Application class more or less similar to the one we already had without hexagonal, but we also have multiple
 classes more. This is a prepared kata, but someone can even call it class explosion...
 
@@ -283,7 +290,7 @@ Also, as you will see in the next point, maitaining the code is quite easy, beca
 infrastructure (_High Maintainability_).
 
 There's also something quite interesting in this kata, that is the ProductAdapter. If you remember the initial implementation, we had both ProductClient and
-ProductRepository. But when we applied the hexagonal concepts, we just left one ProductAdapter. That's really important, because as exaplined before, we don't
+ProductRepository. But when we applied the hexagonal concepts, we just left one ProductAdapter. That's really important, because as explained before, we don't
 mind where the data come from, we just know that we're gonna use it. In our case, we call just one Api (or adapter) but the adapter itself needs to call many
 different infrastructures to accomplish its own contract, in this case, the client and the repository.
 
@@ -294,7 +301,7 @@ So, now that we have everything modeled correctly with a new and shiny hexagonal
 #### 8.a Update to the external services version 2
 
 Same as before, update the version to 2 and make everything compile again. You will see that your modifications should not imply the business logic, as there is
-no change there. Just modify adapters and controller and ready to test again.
+no change there. Just modify adapters and controller and ready to test again. (copy `kata-test-data/2.b` files to `test/resources`)
 
 #### 8.b Premium discounts
 
@@ -306,35 +313,18 @@ external model that returns to our consumers that already processed Product info
 Let's make that change. It will affect our contracts, because we are going to modify our returning object in the external port, but sometimes is needed.
 Remember to move the existing/new models to the correct package (in the case they are just internal or external models)
 
+Let's check after all the changes, that our tests works as expected (remember to copy `kata-test-data/2.c` files to `test/resources`)
 
+#### 8.c More discounts
 
+Now, let's apply the other rule. If the customer is premium, and it has a product of each type (1xx, 2xx, 3xx, 4xx) discount an additional 15% on each product.
+What do you need to accomplish this new rule? does it affect any external dependency?
 
---------------------------------
+Of course, you just need to update your business logic, and it should be quite easy. Copy `kata-test-data/3.a` files to `test/resources`
 
-#### 2.c Your premium accounts have 'special' discounts. Apply them
+#### 8.d Last change
 
-This new version of the external services returns more data. Account data has a special field named premiumAccount, that will let you know who is eligible for a
-special discount. Apply those premium prices to all the accounts.
-
-_Copy all files from `/kata-test-data/2.c/results` folder to your `test/resources` folder and overwrite the existing files. Execute the tests and try to modify
-your code to accomplish this new version of the tests._
-
-### 3. More changes in discounts
-
-#### 3.a New Discounts for your premium accounts
-
-There is a new feature to be applied to your application. From now on, all the premium accounts that have a product of each type (types 1xx, 2xx, 3xx, 4xx) will
-have another discount added to the existing current premium price. You'll need to discount an additional 15% on each product, resulting in a 15% total invoice
-discount.
-
-_Copy all files from `/kata-test-data/3.a/results` folder to your `test/resources` folder and overwrite the existing files. Execute the tests and try to modify
-your code to accomplish this new version of the tests._
-
-### 4. New External Services version
-
-#### 4.a Update external-services version
-
-You need to update external services to version `3`. This one brings some upgrades to the products. From now on, `ProductsRepository` has been removed, and all
-the product information has been moved to the new `ProductsClient`.
+You need to update again the external services to version `3`. This changes your external dependencies, but not your business logic, so, where should the
+changes be?
 
 Just update the version and make all tests green again

@@ -54,7 +54,7 @@
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-test-junit</artifactId>
+            <artifactId>kotlin-test-junit5</artifactId>
             <version>${kotlin.version}</version>
             <scope>test</scope>
         </dependency>
@@ -107,7 +107,6 @@
                             <goal>compile</goal>
                         </goals>
                     </execution>
-
                     <execution>
                         <id>test-compile</id>
                         <goals>
@@ -118,6 +117,11 @@
                 <configuration>
                     <jvmTarget>${java.version}</jvmTarget>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
             </plugin>
         </plugins>
     </build>
