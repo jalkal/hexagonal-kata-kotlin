@@ -1,7 +1,9 @@
 # hexagonal-kata-kotlin
 
 <img align="right" width="200" height="183" src="https://github.com/caay2000/hexagonal-kata-kotlin/blob/main/hexagonal-gif.gif">The idea of this kata is to
-learn how to implement a hexagonal architecture project while understanding some benefits that it will give to you and your team.
+learn how to implement a hexagonal architecture project while understanding some benefits that it will bring to you and your team.
+
+_Hexagon loading image property of [Ferenc Horvat](https://dribbble.com/ferenchorvat)_
 
 ## Table of Contents
 
@@ -18,11 +20,11 @@ learn how to implement a hexagonal architecture project while understanding some
         + [5. That's all folks](#5-that-s-all-folks)
         + [6. Hexagonal architecture to the rescue](#6-hexagonal-architecture-to-the-rescue)
 
-## Assumptions (TODO)
+## Disclaimers (TODO)
 
 Just practising hexagonal, nothing about TDD or other practices
 
-## Benefits (TODO)
+## Why? (TODO)
 
 There are multiple explanations out there about the benefits of hexagonal architecture that you can read to understand them, but as a summary, I would say:
 
@@ -31,13 +33,13 @@ There are multiple explanations out there about the benefits of hexagonal archit
 - Easy to test
 - High Maintainability
 
-## Rules (TODO)
+## How to? (TODO)
 
 ![Hexagonal Diagram](hexagonal.png)
 
 - never use something from outside (app does not use service)
 
-## Components (TODO)
+### Components (TODO)
 
 - Domain Model
 - Ports
@@ -152,10 +154,10 @@ As an external port, we want to model the services we'll offer to our consumers,
 `getInvoice` functions. Each of them receives an `AccountId`, and they return different models. I would propose have an interface (call it AccountApi) with the
 following contract:
 
-```
-    fun getAccount(accountId: AccountId) : Account
-    fun getProducts(accountId: AccountId) : List<Product>
-    fun getInvoice(accountId: AccountId) : Invoice
+```kotlin
+    fun getAccount(accountId: AccountId): Account
+fun getProducts(accountId: AccountId): List<Product>
+fun getInvoice(accountId: AccountId): Invoice
 ```
 
 Then, you will need to create, in the model folder, each returning class. At the moment, just use the fields that you need to accomplish your test contract. Try
@@ -179,9 +181,9 @@ In the internal package, create two different interfaces, one for each type/grou
 In the `AccountApi` interface, you just need a function to return all the Account information. In the `ProductApi`, you need also just one function, to retrieve
 the products of an account (with all the product information).
 
-```
-    fun getAccount(accountId: AccountId) : Account
-    fun getProducts(accountId: AccountId) : List<Product>
+```kotlin
+    fun getAccount(accountId: AccountId): Account
+fun getProducts(accountId: AccountId): List<Product>
 ```
 
 You'll need also to create the models you use in your interfaces in the internal/model folder, `AccountId`, `Account`
@@ -205,7 +207,7 @@ the whole application, testing all our business logic, without external componen
 
 We need a class that implements our external port, and this class will also receive as parameters the two internal ports we have just created.
 
-```
+```kotlin
     class AccountApplication(private val accountApi: InternalAccountApi, private val productApi: ProductApi) : ExternalAccountApi
 ```
 
@@ -241,20 +243,20 @@ need to mock the external dependencies.
 Having everything ready, you can solve the compilation problems on the controller and Application.kt file. If you are not familiar with Koin or any other
 DependencyInjection framework, I'll give you the solution below:
 
-```
+```kotlin
     install(Koin) {
-        modules(module {
-            single { AccountClient(AccountClientConfiguration()) }
-            single { ProductClient(ProductClientConfiguration()) }
-            single { ProductRepository(ProductRepositoryConfiguration()) }
+    modules(module {
+        single { AccountClient(AccountClientConfiguration()) }
+        single { ProductClient(ProductClientConfiguration()) }
+        single { ProductRepository(ProductRepositoryConfiguration()) }
 
-            single { AccountAdapter(accountClient = get()) }
-            single { ProductAdapter(productClient = get(), productRepository = get()) }
+        single { AccountAdapter(accountClient = get()) }
+        single { ProductAdapter(productClient = get(), productRepository = get()) }
 
-            single { AccountApplication(accountApi = get<AccountAdapter>(), productApi = get<ProductAdapter>()) }
-            single { AccountController(accountApi = get<AccountApplication>()) }
-        })
-    }
+        single { AccountApplication(accountApi = get<AccountAdapter>(), productApi = get<ProductAdapter>()) }
+        single { AccountController(accountApi = get<AccountApplication>()) }
+    })
+}
 ```
 
 As you can see, `AccountApplication` and `AccountController` need some help on the beans they should inject. Why? We need to specify to Koin that we are going
@@ -309,6 +311,10 @@ You need now to apply the premium discounts (_same as we made before_). We'll ne
 that we have until now (the same for external and internal model) but that would be a little nasty. Why? because we need to override the price with the premium
 one in soma cases. So would be nice to have a Product model coming from our internal model that gives us all the data that we want, and another one for our
 external model that returns to our consumers that already processed Product information.
+
+> <a id="different-external-internal-model"></a>Usually is a good practice to have different models for internal and external port, because usually what
+> happens is that the internal ports data is raw data (data you request to apply business logic on it) while the external port model, usually, is a refined
+> data that can have more or different fields. Even having the same number of fields, maybe these fields have a different meaning.
 
 Let's make that change. It will affect our contracts, because we are going to modify our returning object in the external port, but sometimes is needed.
 Remember to move the existing/new models to the correct package (in the case they are just internal or external models)
